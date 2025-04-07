@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const SubmissionSchema = new mongoose.Schema(
   {
     empRef: String,
+    title: String,
     videoURL: String,
-    firstName: String,
+    firstName: String,                                         
     lastName: String,
     socialHandle: String,
     country: String,
@@ -26,6 +27,7 @@ const adminSchema = new mongoose.Schema(
   {
     email: { type: String, required: true },
     password: { type: String, required: true },
+    formLink: { type: String },
     role: { type: String, required: true, default: "admin" },
   },
   { timestamps: true }
@@ -43,17 +45,15 @@ const employeeSchema = new mongoose.Schema(
 
 const notificationSchema = new mongoose.Schema(
   {
-    creatorName: { type: String, required: true }, // Name of the creator (firstName + lastName)
+    creatorName: { type: String, required: true },
     employeeName: String,
-    message: { type: String, required: true }, // Notification message
-    isRead: { type: Boolean, default: false }, // To mark notification as read/unread
+    message: { type: String, required: true },
+    isRead: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
 
-
-// Export all models
 const Submission = mongoose.model("Submission", SubmissionSchema);
 const Admin = mongoose.model("Admin", adminSchema);
 const Employee = mongoose.model("Employee", employeeSchema);
